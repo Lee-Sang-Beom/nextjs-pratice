@@ -21,14 +21,9 @@ export default function photos ( {photos} ) {
 
                                 <span> {photo.title} </span>
                             </a>
-
-                        </Link>
-                        
+                        </Link>       
                     </li>
-                    
                 ))}
-
-                
             </ul>
         </div>
     )
