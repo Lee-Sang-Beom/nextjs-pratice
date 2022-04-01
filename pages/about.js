@@ -2,7 +2,7 @@ import { Button, Divider, Form, Header, Input, List, TextArea } from "semantic-u
 
 export default function About(){
     return (
-        <div>
+        <div style={{margin : 40}}>
             <Header as = "h3" style={{paddingTop : 40}} color = "blue">
                 편집자 정보 : LeeSangBeom
             </Header>

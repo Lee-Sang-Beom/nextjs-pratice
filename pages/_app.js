@@ -5,7 +5,7 @@ import Top from "../src/component/Top"
 
 function MyApp({ Component, pageProps }) {
   return (
-  <div style={{width:1000, margin:'auto'}}>
+  <div style={{width:1000, margin : '0px auto'}}>
     <Top/>
     <Component {...pageProps} />
     <Footer />

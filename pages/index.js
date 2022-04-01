@@ -7,50 +7,36 @@ import ItemList from '../src/component/ItemList';
 import { Divider, Header } from 'semantic-ui-react';
 import {Loader} from 'semantic-ui-react'
 
-export default function Home() {
-
-  const API_URL = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
-  const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // 로딩상태 표현
-
-  function getData(){
-    axios.get(API_URL).then((res) => {
-      console.log(res.data);
-      setList(res.data);
-      setIsLoading(false);
-    });
-  }
-
-  useEffect(()=>{
-   getData();
-  }, []);
+export default function Home({list}) {
 
   return (
     <div>
       <Head>
         <title> Home | 출발 </title>
       </Head>
-      {isLoading && (
-        <div style={{padding: "300px 0"}}>
-          <Loader inline = "centered" active>
-            Loading...
-          </Loader>
-        </div>
-      )}
-      {!isLoading && (
-        <>
-          <Header as = "h3" style = { {paddingTop : 40}} > 베스트 상품 </Header>
-          <Divider />
-          <ItemList list = {list.slice(0,9)} />
+      <>
+        <Header as = "h3" style = { {paddingTop : 40}} > 베스트 상품 </Header>
+        <Divider />
+        <ItemList list = {list.slice(0,9)} />
 
-          <Header as = "h3" style = { {paddingTop : 40}} > 신상품 </Header>
-          <Divider />
-          <ItemList list = {list.slice(9)} />
-        </>
-      )}
-
-
-
+        <Header as = "h3" style = { {paddingTop : 40}} > 신상품 </Header>
+        <Divider />
+        <ItemList list = {list.slice(9)} />
+      </>
     </div>
   )
+}
+
+export async function getStaticProps(){
+  const apiUrl = process.env.apiUrl;
+  const res = await axios.get(apiUrl);
+  const data = res.data;
+
+  return {
+    props : {
+      list : data,
+      name : process.env.name
+    }
+  }
+
 }

@@ -2,12 +2,23 @@ import axios, { Axios } from 'axios'
 import Head from 'next/head';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Header, Loader } from 'semantic-ui-react';
+import { Dimmer, Header, Loader } from 'semantic-ui-react';
 import Item from "../../src/component/Item";
 
 const Post = ({item, name}) => {
 
+  const router = useRouter();
 
+  if (router.isFallback){
+    return (
+      <div style={{paddingTop : '30px'}}>
+        <Dimmer active>
+          <Loader>Loading...</Loader>
+        </Dimmer>
+      </div>
+    )
+  }
+  
   return (
     <>
       {item && (<>
@@ -24,7 +35,29 @@ const Post = ({item, name}) => {
 
 export default Post;
 
-export async function getServerSideProps(context) { // getServerSideProps로 서버에서 데이터를 가져온다
+export async function getStaticPaths(){
+  const apiUrl = process.env.apiUrl;
+  const res = await axios.get(apiUrl);
+  const data = res.data;
+
+  return {
+    // paths : [
+    //   {params : {id : '740'}},
+    //   {params : {id : '730'}},
+    //   {params : {id : '729'}},
+    // ],
+
+    paths : data.slice(0,9).map((item) => ({
+      params : {
+        id : item.id.toString(),
+      }
+    })),
+
+    fallback : true
+  }
+}
+
+export async function getStaticProps(context) { // getServerSideProps로 서버에서 데이터를 가져온다
   // context에는 여러 정보를 가짐 (파람스, 요청, 쿼리 등)
   const id = context.params.id; // id는 /view/ [] >> [여기 숫자] 번호이다.
   const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`; // 서버에서 (Nodejs) 동작

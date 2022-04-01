@@ -9,7 +9,7 @@ export default function ItemList({ list }){
             <Grid.Row>  
             {list.map((item) => (
                 <Grid.Column key = {item.id}>
-                    <Link href = "/view/[id]" as = {`/view/${item.id}`}> 
+                    <Link href = "/detail/[id]" as = {`/detail/${item.id}`}> 
                     {/* next가 가야할 곳 : href, as는 사용자가 직접 url에서 보는 주소 */}
                     <a>
                         <div className={styles.wrap}>

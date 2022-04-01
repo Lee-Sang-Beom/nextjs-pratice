@@ -3,14 +3,15 @@ import { Menu } from 'semantic-ui-react'
 
 export default function Gnb(){
     const router = useRouter(); // useRouter는 nextjs에서 사용하는거
-    console.log(router);
-
     let activeItem;
     if (router.pathname === '/'){
       activeItem = 'home';
     }
     else if(router.pathname === '/about'){
       activeItem = 'about';
+    }
+    else if(router.pathname === '/admin'){
+      activeItem = 'admin';
     }
 
     function goLink(e, data){
@@ -21,6 +22,12 @@ export default function Gnb(){
       }
       else if (data.name === 'about'){
         router.push('/about'); 
+      }
+      else if (data.name === 'contact Us'){
+        router.push('/contact'); 
+      }
+      else if (data.name === 'admin'){
+        router.push('/admin'); 
       }
     }
     return(
@@ -33,6 +40,20 @@ export default function Gnb(){
         <Menu.Item
           name='about'
           active={activeItem === 'about'} 
+           // 클릭하면 불이들어오는 거. 우리는 이걸해야함. 그게 router로 적용됨.
+           // activeItem이 about일때 active가 되는데, 위 router.push(about) 이 되면서 pathname이 about이 되면 activeitem이 about되면서 여기 active가 불이들어옴
+          onClick={goLink}
+        />
+        <Menu.Item
+          name='contact Us'
+          active={activeItem === 'contact'} 
+           // 클릭하면 불이들어오는 거. 우리는 이걸해야함. 그게 router로 적용됨.
+           // activeItem이 about일때 active가 되는데, 위 router.push(about) 이 되면서 pathname이 about이 되면 activeitem이 about되면서 여기 active가 불이들어옴
+          onClick={goLink}
+        />
+        <Menu.Item
+          name='admin'
+          active={activeItem === 'admin'} 
            // 클릭하면 불이들어오는 거. 우리는 이걸해야함. 그게 router로 적용됨.
            // activeItem이 about일때 active가 되는데, 위 router.push(about) 이 되면서 pathname이 about이 되면 activeitem이 about되면서 여기 active가 불이들어옴
           onClick={goLink}
