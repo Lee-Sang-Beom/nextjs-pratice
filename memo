@@ -1,0 +1,2 @@
+1. useRouter()
+ <a style={{color: router.pathname === "/about" ? "red" : "blue" }}> ABOUT</a>
