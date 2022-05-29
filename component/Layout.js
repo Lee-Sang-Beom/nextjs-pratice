@@ -1,13 +1,12 @@
 import Head from "next/head"
 import React from "react"
+import HeadInfo from "./HeadInfo"
 import Nav from "./Nav"
 
 export default function Layout({children}) {
     return (
         <>
-            <Head>
-                <title>My Blog</title> 
-            </Head>
+            <HeadInfo title="MY BLOG"/>
             <Nav/>
             <div>
                 {children}

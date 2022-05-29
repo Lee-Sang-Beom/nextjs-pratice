@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-
 
 export default function index({ photo }) {
-    // const router = useRouter();
     const { title, url } = photo;
 
     return (
@@ -43,7 +40,9 @@ export async function getStaticPaths(){
     const ids = photos.map(photo => photo.id);
     const paths = ids.map(id => {
         return {
-            params : {id : id.toString()}
+            params : {
+                id : id.toString(),
+            }
         }
     })
     

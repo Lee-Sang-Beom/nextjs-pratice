@@ -13,8 +13,6 @@ export default function Home( {posts} ) {
         <li style={{listStyle : "outside"}} key = {post.id}>{post.title}</li>
       ))}
       </ul>
-
-      
     </div>
   )
 }
