@@ -10,7 +10,6 @@ export default function About(){
             <List>
                 <List.Item>KIT</List.Item>
                 <List.Item>학년 : 4</List.Item>
-                <List.Item><a href = "https://lee-sang-beom.github.io/">Jekyll 연습</a></List.Item>
             </List>
 
             <Header as = "h3" style={{paddingTop : 40}} color = "blue">
